@@ -1,0 +1,52 @@
+<div class="row valigh-wrapper">
+	<div class="col m3 offset-m3 s6 center-align">
+		<h5>{{ band.name }}</h5>
+	</div>
+	<div class="col m3 s6 center-align">
+		<a class="btn-floating waves-effect waves-light blue" (click)="showInfo=!showInfo">
+		<i *ngIf="showInfo" class="material-icons">
+			keyboard_arrow_up
+		</i>
+		<i *ngIf="!showInfo" class="material-icons">
+			keyboard_arrow_down
+		</i>
+		</a>
+		<a [routerLink] = "'/members/'+ band.id" class="btn-floating waves-effect waves-light blue-grey">
+			<i class="material-icons">
+				view_headline
+			</i>
+		</a>
+	</div>
+</div>
+<div class="info" *ngIf="showInfo">
+	<form #myForm="ngForm" novalidate (ngSubmit)="onSubmit(myForm)">
+		<div class="input-field">
+		<input id="id" [(ngModel)]="band.id" name = "id" type="text" class="validate" readonly>
+		<label for="id" class="active">ID</label>
+	</div>
+	<div class="input-field">
+		<input id="name" [(ngModel)]="band.name" name = "name" type="text" class="validate">
+		<label for="name" class="active">Band name</label>
+	</div>
+	<div class="input-field">
+		<input id="genre" [(ngModel)]="band.country" name = "country" type="text" class="validate">
+		<label for="genre" class="active">Country</label>
+	</div>
+	<div class="input-field">
+		<input id="producer" [(ngModel)]="band.genre" name = "genre" type="text" class="validate">
+		<label for="producer" class="active">Metal Genre</label>
+	</div>
+	<div class="input-field">
+		<input id="mark" [(ngModel)]="band.year" name = "year" type="text" class="validate">
+		<label for="mark" class="active">Year of creation</label>
+	</div>
+	<div class="form-group">
+		<button type="button" (click)="remBand()" class="rem-row btn-floating waves-effect waves-light red">
+			<i class="material-icons">delete</i>
+		</button>
+		<button type="submit" class="btn-floating waves-effect waves-light green right">
+			<i class="material-icons">done</i>
+		</button>
+	</div>
+	</form>
+</div>
